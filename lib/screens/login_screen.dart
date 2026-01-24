@@ -29,7 +29,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       await authService.signInWithGoogle();
       // Navigation will be handled by the auth state listener in main.dart
     } catch (e) {
-      print(e);
       setState(() {
         _errorMessage = 'Sign-in failed. Please try again.';
       });

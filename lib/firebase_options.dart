@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show defaultTargetPlatform, TargetPlatform;
 
 /// Firebase configuration options for TPS.
 ///
@@ -8,9 +8,6 @@ import 'package:flutter/foundation.dart'
 /// Project: audio-streaming-platform-f6587
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
@@ -35,41 +32,31 @@ class DefaultFirebaseOptions {
     }
   }
 
-  /// Web configuration
-  /// TODO: Update these values after running `flutterfire configure`
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'YOUR_WEB_API_KEY',
-    appId: '1:YOUR_APP_ID:web:YOUR_WEB_APP_ID',
-    messagingSenderId: '107521596694702862770',
-    projectId: 'audio-streaming-platform-f6587',
-    authDomain: 'audio-streaming-platform-f6587.firebaseapp.com',
-  );
-
   /// Android configuration
-  /// TODO: Update these values after adding google-services.json
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_ANDROID_API_KEY',
-    appId: '1:YOUR_APP_ID:android:YOUR_ANDROID_APP_ID',
-    messagingSenderId: '107521596694702862770',
+    apiKey: 'AIzaSyAshcs0prVQUrZYASVd1MnrDq4Qq5OIE-U',
+    appId: '1:1046049642350:android:6d4233774e60b3c8f8d37f',
+    messagingSenderId: '1046049642350',
     projectId: 'audio-streaming-platform-f6587',
+    storageBucket: 'audio-streaming-platform-f6587.firebasestorage.app',
   );
 
-  /// iOS configuration
-  /// TODO: Update these values after adding GoogleService-Info.plist
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'YOUR_IOS_API_KEY',
-    appId: '1:YOUR_APP_ID:ios:YOUR_IOS_APP_ID',
-    messagingSenderId: '107521596694702862770',
+    apiKey: 'AIzaSyBvuwhw-1oXUFdGJX8mx0-wde_2TO6siEs',
+    appId: '1:1046049642350:ios:2e95ec06b593c7a0f8d37f',
+    messagingSenderId: '1046049642350',
     projectId: 'audio-streaming-platform-f6587',
+    storageBucket: 'audio-streaming-platform-f6587.firebasestorage.app',
     iosBundleId: 'com.tps.core',
   );
 
   /// macOS configuration
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'YOUR_MACOS_API_KEY',
-    appId: '1:YOUR_APP_ID:macos:YOUR_MACOS_APP_ID',
-    messagingSenderId: '107521596694702862770',
+    apiKey: 'AIzaSyBvuwhw-1oXUFdGJX8mx0-wde_2TO6siEs',
+    appId: '1:1046049642350:ios:2e95ec06b593c7a0f8d37f',
+    messagingSenderId: '1046049642350',
     projectId: 'audio-streaming-platform-f6587',
+    storageBucket: 'audio-streaming-platform-f6587.firebasestorage.app',
     iosBundleId: 'com.tps.core',
   );
 }
