@@ -29,13 +29,7 @@ class DashboardScreen extends ConsumerWidget {
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'TPS',
-                    style: TPSTypography.textTheme.headlineLarge?.copyWith(
-                      color: TPSColors.cyan,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  TPSLogo(size: 32),
                   Text(
                     'The Private Streamer',
                     style: TPSTypography.textTheme.labelSmall?.copyWith(
