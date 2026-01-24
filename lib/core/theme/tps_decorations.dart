@@ -29,6 +29,9 @@ class TPSDecorations {
   static BorderRadius get cardBorderRadius =>
       BorderRadius.circular(borderRadius);
 
+  /// Alias for cardBorderRadius (for backward compatibility)
+  static BorderRadius get standardBorderRadius => cardBorderRadius;
+
   /// BorderRadius preset for compact elements
   static BorderRadius get compactBorderRadius =>
       BorderRadius.circular(borderRadiusSm);

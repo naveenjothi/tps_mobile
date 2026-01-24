@@ -15,11 +15,12 @@ class TPSEmptyState extends StatelessWidget {
   const TPSEmptyState({
     super.key,
     required this.title,
-    this.message,
+    String? message,
+    String? subtitle, // Alias for message
     this.icon,
     this.actionLabel,
     this.onAction,
-  });
+  }) : message = message ?? subtitle;
 
   /// Empty favorites state
   factory TPSEmptyState.favorites({VoidCallback? onAction}) {
@@ -196,80 +197,6 @@ class TPSLoadingIndicator extends StatelessWidget {
         valueColor: const AlwaysStoppedAnimation(TPSColors.cyan),
         backgroundColor: TPSColors.surface,
       ),
-    );
-  }
-}
-
-/// TPS Skeleton Loader
-///
-/// Animated placeholder for loading content.
-class TPSSkeleton extends StatefulWidget {
-  final double width;
-  final double height;
-  final BorderRadius? borderRadius;
-
-  const TPSSkeleton({
-    super.key,
-    required this.width,
-    required this.height,
-    this.borderRadius,
-  });
-
-  /// Circular skeleton (for avatars/icons)
-  const TPSSkeleton.circle({super.key, required double size})
-    : width = size,
-      height = size,
-      borderRadius = null;
-
-  @override
-  State<TPSSkeleton> createState() => _TPSSkeletonState();
-}
-
-class _TPSSkeletonState extends State<TPSSkeleton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    )..repeat();
-
-    _animation = Tween<double>(
-      begin: 0.3,
-      end: 0.6,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final isCircle =
-        widget.width == widget.height && widget.borderRadius == null;
-
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, _) {
-        return Container(
-          width: widget.width,
-          height: widget.height,
-          decoration: BoxDecoration(
-            color: TPSColors.surface.withOpacity(_animation.value),
-            borderRadius: isCircle
-                ? null
-                : widget.borderRadius ?? TPSDecorations.compactBorderRadius,
-            shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-          ),
-        );
-      },
     );
   }
 }

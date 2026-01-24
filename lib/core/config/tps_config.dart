@@ -1,0 +1,34 @@
+/// TPS Environment Configuration
+///
+/// Contains environment-specific configuration values.
+/// These values are derived from the backend .env file.
+class TPSConfig {
+  /// Firebase Project ID
+  static const String firebaseProjectId = 'audio-streaming-platform-f6587';
+
+  /// API Gateway Base URL (for local development)
+  static const String apiBaseUrlLocal = 'http://localhost:4000/api/v1';
+
+  /// API Gateway Base URL (for production - update when deployed)
+  static const String apiBaseUrlProd = 'https://your-api-domain.com/api/v1';
+
+  /// Catalog Service Base URL
+  static const String catalogServiceUrl = 'http://localhost:4000/api/v1';
+
+  /// Signaling Service Base URL
+  static const String signalingServiceUrl = 'http://localhost:4001/api/v1';
+
+  /// Current environment
+  static const String environment = 'local';
+
+  /// Get the appropriate API base URL based on environment
+  static String get apiBaseUrl {
+    return environment == 'production' ? apiBaseUrlProd : apiBaseUrlLocal;
+  }
+
+  /// Check if running in production
+  static bool get isProduction => environment == 'production';
+
+  /// Check if running in development
+  static bool get isDevelopment => environment == 'local';
+}

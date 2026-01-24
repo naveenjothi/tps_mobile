@@ -42,6 +42,17 @@ dependencies:
   flutter_riverpod: ^2.5.0    # State management for async streams
   flutter_svg: ^2.0.9         # SVG support for waveform graphics
 
+  # Firebase & Auth
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.2
+  google_sign_in: ^6.2.2
+  
+  # Networking
+  http: ^1.2.0
+  
+  # UI Effects
+  shimmer: ^3.0.0
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
