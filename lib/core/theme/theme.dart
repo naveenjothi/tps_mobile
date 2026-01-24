@@ -2,6 +2,7 @@
 ///
 /// Export all theme-related classes for easy import.
 /// Usage: import 'package:tps_core/core/theme/theme.dart';
+library;
 
 export 'tps_colors.dart';
 export 'tps_typography.dart';

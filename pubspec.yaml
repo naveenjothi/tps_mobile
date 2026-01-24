@@ -30,12 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_webrtc: ^0.10.0   # For the P2P Data Channel
+  flutter_webrtc: ^0.12.0   # For the P2P Data Channel (Flutter 3.x compatible)
   just_audio: ^0.9.36       # For bit-perfect playback handling
   audio_service: ^0.18.12   # For background/lock-screen control
   web_socket_channel: ^2.4.0 # To talk to your Node.js signaling server
-  on_audio_query: ^2.1.0    # For audio query
-  permission_handler: ^10.1.0 # For handling permissions
+  # on_audio_query: ^2.9.0    # TEMP DISABLED: Incompatible with AGP 8+, needs namespace fix
+  permission_handler: ^11.0.0 # For handling permissions (AGP 8+ compatible)
 
   # Design System Dependencies
   google_fonts: ^6.2.1        # Premium typography (Inter, Outfit)
