@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1046049642350",
+    "project_id": "audio-streaming-platform-f6587",
+    "storage_bucket": "audio-streaming-platform-f6587.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046049642350:android:6d4233774e60b3c8f8d37f",
+        "android_client_info": {
+          "package_name": "com.tps.tps_core"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046049642350-sjftg9hmupc1orsrm48o6rvkq5u76g6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tps.tps_core",
+            "certificate_hash": "9e5e6688ce52c4944acf6f443ef0a3ce2af72c3c"
+          }
+        },
+        {
+          "client_id": "1046049642350-k0uunphn8euqu06ehk2108c6dqca24a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAshcs0prVQUrZYASVd1MnrDq4Qq5OIE-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046049642350-k0uunphn8euqu06ehk2108c6dqca24a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
