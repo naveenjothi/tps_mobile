@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tps_core/core/widgets/widgets.dart';
 import 'firebase_options.dart';
 import 'core/theme/theme.dart';
 import 'core/providers/providers.dart';
@@ -73,11 +74,26 @@ class _SplashScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: TPSColors.cyanGradient,
                 borderRadius: TPSDecorations.heroBorderRadius,
+                boxShadow: [
+                  BoxShadow(
+                    color: TPSColors.cyan.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                    spreadRadius: 2,
+                  ),
+                ],
               ),
-              child: const Icon(
-                Icons.headphones_rounded,
-                color: Colors.white,
-                size: 40,
+              child: Center(
+                child: SizedBox(
+                  width: 80 * 0.625,
+                  height: 80 * 0.625,
+                  child: CustomPaint(
+                    painter: TPSWaveformPainter(
+                      color: Colors.white,
+                      strokeWidth: 2.5,
+                    ),
+                  ),
+                ),
               ),
             ),
             TPSSpacing.vGapLg,

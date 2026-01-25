@@ -57,7 +57,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const Spacer(flex: 1),
 
               // Feature highlights
-              _buildFeatures(),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _buildFeatures(),
+              ),
 
               const Spacer(flex: 2),
 
@@ -137,12 +140,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
             ],
           ),
-          child: const Icon(
-            Icons.headphones_rounded,
-            color: Colors.white,
-            size: 48,
+          child: Stack(
+            children: [
+              // Signature Waveform in background
+              Center(
+                child: SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: CustomPaint(
+                    painter: TPSWaveformPainter(
+                      color: Colors.white,
+                      strokeWidth: 6,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+
         TPSSpacing.vGapLg,
 
         // App Name
@@ -178,49 +194,56 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
         TPSSpacing.vGapMd,
         _buildFeatureItem(
-          Icons.high_quality_rounded,
+          Icons.flash_on_rounded,
           'Bit-Perfect Audio',
           'Lossless streaming from source',
         ),
         TPSSpacing.vGapMd,
         _buildFeatureItem(
-          Icons.devices_rounded,
-          'P2P Connection',
-          'Direct device to device streaming',
+          Icons.lightbulb_rounded,
+          'On-Device AI Discovery',
+          'Discover and stream music from your device',
         ),
       ],
     );
   }
 
   Widget _buildFeatureItem(IconData icon, String title, String subtitle) {
-    return Row(
-      children: [
-        Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: TPSColors.surface,
-            borderRadius: TPSDecorations.compactBorderRadius,
-            border: Border.all(color: TPSColors.glassBorder),
-          ),
-          child: Icon(icon, color: TPSColors.cyan, size: 22),
-        ),
-        TPSSpacing.hGapMd,
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: TPSTypography.textTheme.titleSmall),
-              Text(
-                subtitle,
-                style: TPSTypography.textTheme.bodySmall?.copyWith(
-                  color: TPSColors.muted,
-                ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 420),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: TPSColors.surface,
+                borderRadius: TPSDecorations.compactBorderRadius,
+                border: Border.all(color: TPSColors.glassBorder),
               ),
-            ],
-          ),
+              child: Icon(icon, color: TPSColors.cyan, size: 22),
+            ),
+
+            TPSSpacing.hGapMd,
+
+            // ✅ NO Expanded needed
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: TPSTypography.textTheme.titleSmall),
+                Text(
+                  subtitle,
+                  style: TPSTypography.textTheme.bodySmall?.copyWith(
+                    color: TPSColors.muted,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -8,3 +8,4 @@ export 'tps_card.dart';
 export 'tps_empty_state.dart';
 export 'tps_skeleton.dart';
 export 'tps_logo.dart';
+export 'tps_waveform_painter.dart';
