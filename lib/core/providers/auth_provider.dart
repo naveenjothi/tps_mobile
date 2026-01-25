@@ -21,8 +21,3 @@ final authStateProvider = StreamProvider<User?>((ref) {
 final currentUserProvider = Provider<User?>((ref) {
   return ref.watch(authStateProvider).value;
 });
-
-/// Provider to check if the user is authenticated.
-final isAuthenticatedProvider = Provider<bool>((ref) {
-  return ref.watch(currentUserProvider) != null;
-});

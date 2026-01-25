@@ -25,9 +25,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     try {
+      // Prevent redirection until backend is verified
+      ref.read(isBackendReadyProvider.notifier).state = false;
+
       final authService = ref.read(authServiceProvider);
-      await authService.signInWithGoogle();
-      // Navigation will be handled by the auth state listener in main.dart
+      final result = await authService.signInWithGoogle();
+
+      final userService = ref.read(userServiceProvider);
+      if (result.user != null) {
+        final success = await userService.createDbUserIfNotExists(result.user!);
+        if (success) {
+          // Backend verification successful, allow redirection
+          ref.read(isBackendReadyProvider.notifier).state = true;
+        } else {
+          setState(() {
+            _errorMessage =
+                'Could not connect to TPS backend. Your music library may be unavailable.';
+          });
+          // Sign out from Firebase if backend fails, so we stay on LoginScreen
+          await authService.signOut();
+        }
+      }
     } catch (e) {
       setState(() {
         _errorMessage = 'Sign-in failed. Please try again.';

@@ -25,18 +25,25 @@ class UserService {
   }
 
   Future<TPSUser?> getUserByFirebaseId(String firebaseId) async {
-    final response = await _client.get('/api/v1/users/firebase/$firebaseId');
-    final data = response['data'] ?? response;
-    return TPSUser.fromJson(data);
+    try {
+      final response = await _client.get('/api/v1/users/firebase/$firebaseId');
+      final data = response['data'] ?? response;
+      return TPSUser.fromJson(data);
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<bool> createDbUserIfNotExists(User user) async {
     try {
       final dbUser = await getUserByFirebaseId(user.uid);
-      if (dbUser != null) {
-        final nameParts = user.displayName!.split(" ");
-        final firstName = nameParts[0];
-        final lastName = nameParts.sublist(1).join(" ");
+      if (dbUser == null) {
+        final displayName = user.displayName ?? "User";
+        final nameParts = displayName.split(" ");
+        final firstName = nameParts.first;
+        final lastName = nameParts.length > 1
+            ? nameParts.sublist(1).join(" ")
+            : "";
 
         await createUser(
           CreateUserRequest(

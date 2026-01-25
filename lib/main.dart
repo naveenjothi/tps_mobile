@@ -49,7 +49,10 @@ class TPSApp extends ConsumerWidget {
       darkTheme: TPSTheme.dark,
       themeMode: ThemeMode.dark,
       home: authState.when(
-        data: (user) => user != null ? const AppShell() : const LoginScreen(),
+        data: (user) {
+          final isAppReady = ref.watch(isAppReadyProvider);
+          return isAppReady ? const AppShell() : const LoginScreen();
+        },
         loading: () => const _SplashScreen(),
         error: (_, __) => const LoginScreen(),
       ),
