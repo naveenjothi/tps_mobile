@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tps_core/app_shell.dart';
 import 'package:tps_core/core/widgets/widgets.dart';
 import 'firebase_options.dart';
 import 'core/theme/theme.dart';
@@ -48,8 +49,7 @@ class TPSApp extends ConsumerWidget {
       darkTheme: TPSTheme.dark,
       themeMode: ThemeMode.dark,
       home: authState.when(
-        data: (user) =>
-            user != null ? const DashboardScreen() : const LoginScreen(),
+        data: (user) => user != null ? const AppShell() : const LoginScreen(),
         loading: () => const _SplashScreen(),
         error: (_, __) => const LoginScreen(),
       ),
