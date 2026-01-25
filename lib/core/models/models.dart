@@ -6,3 +6,4 @@
 export 'artist_stat.dart';
 export 'song.dart';
 export 'dashboard_stats.dart';
+export 'user.dart';

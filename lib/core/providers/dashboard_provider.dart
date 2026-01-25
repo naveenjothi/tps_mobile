@@ -1,13 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tps_core/core/providers/api_provider.dart';
 import '../services/services.dart';
 import '../models/models.dart';
-import 'auth_provider.dart';
-
-/// Provider for the API client.
-final apiClientProvider = Provider<ApiClient>((ref) {
-  final authService = ref.watch(authServiceProvider);
-  return ApiClient(authService: authService);
-});
 
 /// Provider for the Dashboard Service.
 final dashboardServiceProvider = Provider<DashboardService>((ref) {

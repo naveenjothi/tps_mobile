@@ -5,3 +5,4 @@
 
 export 'auth_provider.dart';
 export 'dashboard_provider.dart';
+export 'api_provider.dart';
