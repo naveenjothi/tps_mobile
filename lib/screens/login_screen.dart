@@ -75,10 +75,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const Spacer(flex: 1),
 
               // Feature highlights
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _buildFeatures(),
-              ),
+              _buildFeatures(),
 
               const Spacer(flex: 2),
 

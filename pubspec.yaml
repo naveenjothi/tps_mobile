@@ -30,22 +30,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_webrtc: ^0.12.0   # For the P2P Data Channel (Flutter 3.x compatible)
-  just_audio: ^0.9.36       # For bit-perfect playback handling
+  flutter_webrtc: ^1.2.1   # For the P2P Data Channel (Flutter 3.x compatible)
+  just_audio: ^0.10.5       # For bit-perfect playback handling
   audio_service: ^0.18.12   # For background/lock-screen control
-  web_socket_channel: ^2.4.0 # To talk to your Node.js signaling server
+  web_socket_channel: ^3.0.3 # To talk to your Node.js signaling server
   # on_audio_query: ^2.9.0    # TEMP DISABLED: Incompatible with AGP 8+, needs namespace fix
-  permission_handler: ^11.0.0 # For handling permissions (AGP 8+ compatible)
+  permission_handler: ^12.0.1 # For handling permissions (AGP 8+ compatible)
 
   # Design System Dependencies
-  google_fonts: ^6.2.1        # Premium typography (Inter, Outfit)
-  flutter_riverpod: ^2.5.0    # State management for async streams
+  google_fonts: ^8.0.0        # Premium typography (Inter, Outfit)
+  flutter_riverpod: ^3.2.0    # State management for async streams
   flutter_svg: ^2.0.9         # SVG support for waveform graphics
 
   # Firebase & Auth
-  firebase_core: ^3.13.0
-  firebase_auth: ^5.5.2
-  google_sign_in: ^6.2.2
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  google_sign_in: ^6.3.0
   
   # Networking
   http: ^1.2.0

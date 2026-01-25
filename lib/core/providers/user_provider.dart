@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:tps_core/core/providers/api_provider.dart';
 import 'package:tps_core/core/providers/auth_provider.dart';
 import '../services/services.dart';
