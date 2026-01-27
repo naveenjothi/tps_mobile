@@ -20,7 +20,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   late TextEditingController _lastNameController;
   late TextEditingController _userNameController;
   late TextEditingController _mobileController;
-  late TextEditingController _photoUrlController;
 
   bool _isLoading = false;
   String? _errorMessage;
@@ -33,7 +32,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _lastNameController = TextEditingController();
     _userNameController = TextEditingController();
     _mobileController = TextEditingController();
-    _photoUrlController = TextEditingController();
   }
 
   @override
@@ -42,7 +40,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _lastNameController.dispose();
     _userNameController.dispose();
     _mobileController.dispose();
-    _photoUrlController.dispose();
     super.dispose();
   }
 
@@ -54,7 +51,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _lastNameController.text = user.lastName ?? '';
     _userNameController.text = user.userName ?? '';
     _mobileController.text = user.mobile ?? '';
-    _photoUrlController.text = user.photoUrl ?? '';
   }
 
   Future<void> _saveProfile() async {
@@ -75,9 +71,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         lastName: _lastNameController.text.trim(),
         userName: _userNameController.text.trim(),
         mobile: _mobileController.text.trim(),
-        photoUrl: _photoUrlController.text.trim().isEmpty
-            ? null
-            : _photoUrlController.text.trim(),
       );
 
       final userService = ref.read(userServiceProvider);
@@ -342,12 +335,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   "Mobile",
                   _mobileController,
                   Icons.phone_android,
-                ),
-                const SizedBox(height: 16),
-                _buildEditableField(
-                  "Avatar URL",
-                  _photoUrlController,
-                  Icons.image,
                 ),
 
                 if (_errorMessage != null) ...[
