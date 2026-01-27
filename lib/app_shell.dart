@@ -15,9 +15,9 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   final _pages = const [
     DashboardScreen(),
-    // LibraryScreen(),
-    // FavoritesScreen(),
-    // HistoryScreen(),
+    Placeholder(),
+    Placeholder(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,14 +40,14 @@ class _AppShellState extends ConsumerState<AppShell> {
             label: 'Library',
           ),
           NavigationDestination(
-            icon: Icon(Icons.favorite_outline_rounded),
-            selectedIcon: Icon(Icons.favorite_rounded),
-            label: 'Favorites',
+            icon: Icon(Icons.search_outlined),
+            selectedIcon: Icon(Icons.search_rounded),
+            label: 'Search',
           ),
           NavigationDestination(
-            icon: Icon(Icons.history_rounded),
-            selectedIcon: Icon(Icons.history_rounded),
-            label: 'History',
+            icon: Icon(Icons.person_outline_rounded),
+            selectedIcon: Icon(Icons.person_rounded),
+            label: 'Profile',
           ),
         ],
       ),

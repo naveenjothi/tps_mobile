@@ -26,39 +26,54 @@ class UserService {
 
   Future<TPSUser?> getUserByFirebaseId(String firebaseId) async {
     try {
-      final response = await _client.get('/api/v1/users/firebase/$firebaseId');
+      final response = await _client.get('/api/v1/users/$firebaseId');
       final data = response['data'] ?? response;
-      return TPSUser.fromJson(data);
+      if (data == null || data is! Map || data['id'] == null) return null;
+      return TPSUser.fromJson(Map<String, dynamic>.from(data));
     } catch (e) {
       return null;
     }
   }
 
-  Future<bool> createDbUserIfNotExists(User user) async {
+  Future<TPSUser> updateUser(TPSUser user) async {
+    final body = user.toJson();
+    // Remove read-only fields if necessary, or backend handles it.
+    // Swagger says body is "User Data".
+
+    final response = await _client.put(
+      '/api/v1/users/${user.firebaseId}',
+      body: body,
+    );
+
+    final data = response['data'] ?? response;
+    return TPSUser.fromJson(data);
+  }
+
+  Future<TPSUser?> createDbUserIfNotExists(User user) async {
     try {
       final dbUser = await getUserByFirebaseId(user.uid);
-      if (dbUser == null) {
-        final displayName = user.displayName ?? "User";
-        final nameParts = displayName.split(" ");
-        final firstName = nameParts.first;
-        final lastName = nameParts.length > 1
-            ? nameParts.sublist(1).join(" ")
-            : "";
+      if (dbUser != null) return dbUser;
 
-        await createUser(
-          CreateUserRequest(
-            email: user.email,
-            firebaseId: user.uid,
-            firstName: firstName,
-            lastName: lastName,
-            mobile: user.phoneNumber,
-            photoUrl: user.photoURL,
-          ),
-        );
-      }
-      return true;
+      final displayName = user.displayName ?? "User";
+      final nameParts = displayName.split(" ");
+      final firstName = nameParts.first;
+      final lastName = nameParts.length > 1
+          ? nameParts.sublist(1).join(" ")
+          : "";
+
+      return await createUser(
+        CreateUserRequest(
+          email: user.email,
+          firebaseId: user.uid,
+          firstName: firstName,
+          lastName: lastName,
+          mobile: user.phoneNumber,
+          photoUrl: user.photoURL,
+        ),
+      );
     } catch (error) {
-      return false;
+      print("error: $error");
+      return null;
     }
   }
 }

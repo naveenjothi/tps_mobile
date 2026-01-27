@@ -33,8 +33,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
       final userService = ref.read(userServiceProvider);
       if (result.user != null) {
-        final success = await userService.createDbUserIfNotExists(result.user!);
-        if (success) {
+        final dbUser = await userService.createDbUserIfNotExists(result.user!);
+        if (dbUser != null) {
+          // Cache the user globally
+          ref.read(currentDbUserProvider.notifier).setUser(dbUser);
+
           // Backend verification successful, allow redirection
           ref.read(isBackendReadyProvider.notifier).state = true;
         } else {

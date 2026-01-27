@@ -5,3 +5,4 @@
 
 export 'login_screen.dart';
 export 'dashboard_screen.dart';
+export 'profile_screen.dart';
