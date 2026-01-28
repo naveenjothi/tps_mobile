@@ -39,13 +39,6 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.logout_rounded),
-                  onPressed: () => authService.signOut(),
-                  tooltip: 'Sign Out',
-                ),
-              ],
             ),
 
             // Content
@@ -68,7 +61,6 @@ class DashboardScreen extends ConsumerWidget {
                   DashboardSectionHeader(
                     title: 'Dashboard',
                     subtitle: 'Your Music Hub',
-                    onAction: () => _showComingSoon(context, 'Dashboard'),
                   ),
                   TPSSpacing.vGapMd,
 
