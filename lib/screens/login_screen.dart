@@ -26,7 +26,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     try {
       // Prevent redirection until backend is verified
-      ref.read(isBackendReadyProvider.notifier).state = false;
+      ref.read(isBackendReadyProvider.notifier).setReady(false);
 
       final authService = ref.read(authServiceProvider);
       final result = await authService.signInWithGoogle();
@@ -39,7 +39,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ref.read(currentDbUserProvider.notifier).setUser(dbUser);
 
           // Backend verification successful, allow redirection
-          ref.read(isBackendReadyProvider.notifier).state = true;
+          ref.read(isBackendReadyProvider.notifier).setReady(true);
         } else {
           setState(() {
             _errorMessage =
@@ -87,9 +87,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: TPSColors.error.withOpacity(0.1),
+                    color: TPSColors.error.withValues(alpha: 0.1),
                     borderRadius: TPSDecorations.standardBorderRadius,
-                    border: Border.all(color: TPSColors.error.withOpacity(0.3)),
+                    border: Border.all(
+                      color: TPSColors.error.withValues(alpha: 0.3),
+                    ),
                   ),
                   child: Row(
                     children: [
@@ -152,7 +154,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             borderRadius: TPSDecorations.heroBorderRadius,
             boxShadow: [
               BoxShadow(
-                color: TPSColors.cyan.withOpacity(0.3),
+                color: TPSColors.cyan.withValues(alpha: 0.3),
                 blurRadius: 30,
                 spreadRadius: 5,
               ),

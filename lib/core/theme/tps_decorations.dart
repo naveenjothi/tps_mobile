@@ -54,7 +54,7 @@ class TPSDecorations {
 
   /// Elevated glass card (modals, dropdowns)
   static BoxDecoration get glassCardElevated => BoxDecoration(
-    color: TPSColors.surfaceElevated.withOpacity(0.9),
+    color: TPSColors.surfaceElevated.withValues(alpha: 0.9),
     borderRadius: cardBorderRadius,
     border: Border.all(color: TPSColors.glassBorder),
     boxShadow: elevatedShadow,
@@ -64,7 +64,10 @@ class TPSDecorations {
   static BoxDecoration get heroCard => BoxDecoration(
     gradient: TPSColors.surfaceGradient,
     borderRadius: heroBorderRadius,
-    border: Border.all(color: TPSColors.cyan.withOpacity(0.2), width: 1.5),
+    border: Border.all(
+      color: TPSColors.cyan.withValues(alpha: 0.2),
+      width: 1.5,
+    ),
     boxShadow: heroShadow,
   );
 
@@ -79,7 +82,7 @@ class TPSDecorations {
     boxShadow: [
       BoxShadow(color: TPSColors.cyanGlow, blurRadius: 16, spreadRadius: 2),
       BoxShadow(
-        color: TPSColors.cyan.withOpacity(0.2),
+        color: TPSColors.cyan.withValues(alpha: 0.2),
         blurRadius: 32,
         spreadRadius: 4,
       ),
@@ -98,9 +101,13 @@ class TPSDecorations {
   /// Subtle glow for active states
   static BoxDecoration glowRing(Color color) => BoxDecoration(
     borderRadius: cardBorderRadius,
-    border: Border.all(color: color.withOpacity(0.3), width: 2),
+    border: Border.all(color: color.withValues(alpha: 0.3), width: 2),
     boxShadow: [
-      BoxShadow(color: color.withOpacity(0.2), blurRadius: 12, spreadRadius: 0),
+      BoxShadow(
+        color: color.withValues(alpha: 0.2),
+        blurRadius: 12,
+        spreadRadius: 0,
+      ),
     ],
   );
 
@@ -111,12 +118,12 @@ class TPSDecorations {
   /// Standard shadow for cards
   static List<BoxShadow> get standardShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.3),
+      color: Colors.black.withValues(alpha: 0.3),
       blurRadius: 16,
       offset: const Offset(0, 4),
     ),
     BoxShadow(
-      color: Colors.black.withOpacity(0.1),
+      color: Colors.black.withValues(alpha: 0.1),
       blurRadius: 4,
       offset: const Offset(0, 1),
     ),
@@ -125,12 +132,12 @@ class TPSDecorations {
   /// Elevated shadow for modals/overlays
   static List<BoxShadow> get elevatedShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.4),
+      color: Colors.black.withValues(alpha: 0.4),
       blurRadius: 24,
       offset: const Offset(0, 8),
     ),
     BoxShadow(
-      color: Colors.black.withOpacity(0.2),
+      color: Colors.black.withValues(alpha: 0.2),
       blurRadius: 8,
       offset: const Offset(0, 2),
     ),
@@ -139,12 +146,12 @@ class TPSDecorations {
   /// Hero shadow for main content cards
   static List<BoxShadow> get heroShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.5),
+      color: Colors.black.withValues(alpha: 0.5),
       blurRadius: 32,
       offset: const Offset(0, 12),
     ),
     BoxShadow(
-      color: TPSColors.cyan.withOpacity(0.1),
+      color: TPSColors.cyan.withValues(alpha: 0.1),
       blurRadius: 48,
       offset: const Offset(0, 16),
     ),

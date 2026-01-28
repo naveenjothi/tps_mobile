@@ -110,8 +110,8 @@ class TPSTheme {
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         foregroundColor: TPSColors.textPrimary,
-        hoverColor: TPSColors.cyan.withOpacity(0.1),
-        highlightColor: TPSColors.cyan.withOpacity(0.2),
+        hoverColor: TPSColors.cyan.withValues(alpha: 0.1),
+        highlightColor: TPSColors.cyan.withValues(alpha: 0.2),
       ),
     ),
 
@@ -144,7 +144,7 @@ class TPSTheme {
       activeTrackColor: TPSColors.cyan,
       inactiveTrackColor: TPSColors.surface,
       thumbColor: TPSColors.cyan,
-      overlayColor: TPSColors.cyan.withOpacity(0.2),
+      overlayColor: TPSColors.cyan.withValues(alpha: 0.2),
       trackHeight: 4,
       thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
       overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
@@ -166,7 +166,7 @@ class TPSTheme {
     // ============================================
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: TPSColors.surface,
-      indicatorColor: TPSColors.cyan.withOpacity(0.2),
+      indicatorColor: TPSColors.cyan.withValues(alpha: 0.2),
       labelTextStyle: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return TPSTypography.textTheme.labelSmall?.copyWith(
@@ -238,7 +238,7 @@ class TPSTheme {
     listTileTheme: ListTileThemeData(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       tileColor: Colors.transparent,
-      selectedTileColor: TPSColors.cyan.withOpacity(0.1),
+      selectedTileColor: TPSColors.cyan.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
         borderRadius: TPSDecorations.compactBorderRadius,
       ),
@@ -278,7 +278,7 @@ class TPSTheme {
       }),
       trackColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return TPSColors.cyan.withOpacity(0.3);
+          return TPSColors.cyan.withValues(alpha: 0.3);
         }
         return TPSColors.surface;
       }),

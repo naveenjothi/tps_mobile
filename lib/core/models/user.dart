@@ -1,4 +1,5 @@
 /// TPS User model and request objects.
+library;
 
 class TPSUser {
   final String id;

@@ -23,7 +23,7 @@ class TPSSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: TPSColors.surface,
-      highlightColor: TPSColors.surface.withOpacity(0.5),
+      highlightColor: TPSColors.surface.withValues(alpha: 0.5),
       child: Container(
         width: width,
         height: height,

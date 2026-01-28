@@ -94,14 +94,14 @@ class TPSColors {
   // ============================================
 
   /// Cyan with reduced opacity for glow effects
-  static Color get cyanGlow => cyan.withOpacity(0.4);
+  static Color get cyanGlow => cyan.withValues(alpha: 0.4);
 
   /// Lilac with reduced opacity for subtle accents
-  static Color get lilacGlow => lilac.withOpacity(0.3);
+  static Color get lilacGlow => lilac.withValues(alpha: 0.3);
 
   /// Surface overlay for glassmorphism (70% opacity)
-  static Color get surfaceGlass => surface.withOpacity(0.7);
+  static Color get surfaceGlass => surface.withValues(alpha: 0.7);
 
   /// Border color for glass cards
-  static Color get glassBorder => Colors.white.withOpacity(0.1);
+  static Color get glassBorder => Colors.white.withValues(alpha: 0.1);
 }

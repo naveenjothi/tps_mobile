@@ -28,7 +28,7 @@ class TPSLogo extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: TPSColors.cyan.withOpacity(0.2),
+                  color: TPSColors.cyan.withValues(alpha: 0.2),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                   spreadRadius: 2,
@@ -56,7 +56,7 @@ class TPSLogo extends StatelessWidget {
               fontSize: size * 0.625, // proportional to size
               fontWeight: FontWeight.bold,
               letterSpacing: -0.5,
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
             ),
           ),
         ],

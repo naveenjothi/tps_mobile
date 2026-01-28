@@ -141,12 +141,14 @@ class _TPSButtonState extends State<TPSButton>
       case TPSButtonVariant.primary:
         return BoxDecoration(
           gradient: isEnabled ? TPSColors.cyanGradient : null,
-          color: isEnabled ? null : TPSColors.muted.withOpacity(0.3),
+          color: isEnabled ? null : TPSColors.muted.withValues(alpha: 0.3),
           borderRadius: TPSDecorations.cardBorderRadius,
           boxShadow: isEnabled
               ? [
                   BoxShadow(
-                    color: TPSColors.cyan.withOpacity(_glowAnimation.value),
+                    color: TPSColors.cyan.withValues(
+                      alpha: _glowAnimation.value,
+                    ),
                     blurRadius: 16,
                     spreadRadius: 2,
                   ),
@@ -157,12 +159,12 @@ class _TPSButtonState extends State<TPSButton>
       case TPSButtonVariant.secondary:
         return BoxDecoration(
           gradient: isEnabled ? TPSColors.lilacGradient : null,
-          color: isEnabled ? null : TPSColors.muted.withOpacity(0.3),
+          color: isEnabled ? null : TPSColors.muted.withValues(alpha: 0.3),
           borderRadius: TPSDecorations.cardBorderRadius,
           boxShadow: isEnabled
               ? [
                   BoxShadow(
-                    color: TPSColors.lilac.withOpacity(0.3),
+                    color: TPSColors.lilac.withValues(alpha: 0.3),
                     blurRadius: 12,
                     spreadRadius: 1,
                   ),
@@ -177,7 +179,7 @@ class _TPSButtonState extends State<TPSButton>
           border: Border.all(
             color: isEnabled
                 ? TPSColors.cyan
-                : TPSColors.muted.withOpacity(0.3),
+                : TPSColors.muted.withValues(alpha: 0.3),
             width: 1.5,
           ),
         );
@@ -187,11 +189,11 @@ class _TPSButtonState extends State<TPSButton>
   Color _getSplashColor() {
     switch (widget.variant) {
       case TPSButtonVariant.primary:
-        return Colors.white.withOpacity(0.2);
+        return Colors.white.withValues(alpha: 0.2);
       case TPSButtonVariant.secondary:
-        return Colors.white.withOpacity(0.2);
+        return Colors.white.withValues(alpha: 0.2);
       case TPSButtonVariant.ghost:
-        return TPSColors.cyan.withOpacity(0.1);
+        return TPSColors.cyan.withValues(alpha: 0.1);
     }
   }
 

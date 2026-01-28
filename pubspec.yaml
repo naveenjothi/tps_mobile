@@ -2,7 +2,7 @@ name: tps_core
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,27 +30,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_webrtc: ^1.2.1   # For the P2P Data Channel (Flutter 3.x compatible)
-  just_audio: ^0.10.5       # For bit-perfect playback handling
-  audio_service: ^0.18.12   # For background/lock-screen control
-  web_socket_channel: ^3.0.3 # To talk to your Node.js signaling server
+  flutter_webrtc: ^1.2.1 # For the P2P Data Channel (Flutter 3.x compatible)
+  just_audio: ^0.10.5 # For bit-perfect playback handling
+  audio_service: ^0.18.12 # For background/lock-screen control
+  # web_socket_channel: ^3.0.3 # TODO: Re-enable for Node.js signaling server
   # on_audio_query: ^2.9.0    # TEMP DISABLED: Incompatible with AGP 8+, needs namespace fix
   permission_handler: ^12.0.1 # For handling permissions (AGP 8+ compatible)
 
   # Design System Dependencies
-  google_fonts: ^8.0.0        # Premium typography (Inter, Outfit)
-  flutter_riverpod: ^3.2.0    # State management for async streams
-  flutter_svg: ^2.0.9         # SVG support for waveform graphics
+  google_fonts: ^8.0.0 # Premium typography (Inter, Outfit)
+  flutter_riverpod: ^3.2.0 # State management for async streams
+  # flutter_svg: ^2.0.9       # TODO: Re-enable when SVG assets are added
 
   # Firebase & Auth
   firebase_core: ^4.4.0
   firebase_auth: ^6.1.4
   google_sign_in: ^6.3.0
-  
+
   # Networking
-  http: ^1.2.0
+  # http: ^1.2.0              # Not needed - using Dio instead
   dio: ^5.5.0
-  
+
   # UI Effects
   shimmer: ^3.0.0
 
@@ -74,7 +74,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

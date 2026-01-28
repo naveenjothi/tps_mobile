@@ -15,8 +15,8 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   final _pages = const [
     DashboardScreen(),
-    Placeholder(),
-    Placeholder(),
+    LibraryScreen(),
+    SearchScreen(),
     ProfileScreen(),
   ];
   @override

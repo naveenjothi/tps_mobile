@@ -2,6 +2,8 @@
 ///
 /// Contains environment-specific configuration values.
 /// These values are derived from the backend .env file.
+library;
+
 import 'dart:io';
 
 class TPSConfig {

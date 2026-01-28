@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../utils/logger.dart';
+
 /// TPS Authentication Service
 ///
 /// Handles Firebase Authentication with Google Sign-In.
@@ -22,37 +24,43 @@ class AuthService {
   /// Returns the [UserCredential] on success, or throws an exception on failure.
   Future<UserCredential> signInWithGoogle() async {
     try {
-      // Trigger the authentication flow
-      print('[AuthService] Starting Google Sign-In...');
+      TPSLogger.debug('Starting Google Sign-In...', tag: 'AuthService');
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
-        print('[AuthService] Google Sign-In was cancelled by user');
+        TPSLogger.debug(
+          'Google Sign-In was cancelled by user',
+          tag: 'AuthService',
+        );
         throw Exception('Google Sign-In was cancelled');
       }
 
-      print('[AuthService] Google user: ${googleUser.email}');
+      TPSLogger.debug('Google user: ${googleUser.email}', tag: 'AuthService');
 
-      // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      print('[AuthService] Got Google auth tokens');
+      TPSLogger.debug('Got Google auth tokens', tag: 'AuthService');
 
-      // Create a new credential
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // Sign in to Firebase with the Google credential
-      print('[AuthService] Signing in to Firebase...');
+      TPSLogger.debug('Signing in to Firebase...', tag: 'AuthService');
       final result = await _auth.signInWithCredential(credential);
-      print('[AuthService] Firebase sign-in successful: ${result.user?.email}');
+      TPSLogger.debug(
+        'Firebase sign-in successful: ${result.user?.email}',
+        tag: 'AuthService',
+      );
       return result;
     } catch (e, stackTrace) {
-      print('[AuthService] Error during Google Sign-In: $e');
-      print('[AuthService] Stack trace: $stackTrace');
+      TPSLogger.error(
+        'Error during Google Sign-In',
+        error: e,
+        stackTrace: stackTrace,
+        tag: 'AuthService',
+      );
       rethrow;
     }
   }

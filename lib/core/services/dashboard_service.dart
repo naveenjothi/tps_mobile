@@ -1,5 +1,6 @@
 import 'api_client.dart';
 import '../models/models.dart';
+import '../utils/logger.dart';
 
 /// Dashboard Service
 ///
@@ -15,8 +16,13 @@ class DashboardService {
       final response = await _client.get('/dashboard/stats');
       final data = response['data'] ?? response;
       return DashboardStats.fromJson(data);
-    } catch (e) {
-      // Return empty stats on error
+    } catch (e, stackTrace) {
+      TPSLogger.error(
+        'Failed to fetch dashboard stats',
+        error: e,
+        stackTrace: stackTrace,
+        tag: 'DashboardService',
+      );
       return DashboardStats.empty();
     }
   }

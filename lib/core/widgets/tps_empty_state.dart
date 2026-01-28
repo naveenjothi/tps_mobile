@@ -123,7 +123,11 @@ class TPSEmptyState extends StatelessWidget {
           color: TPSColors.surface,
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 40, color: TPSColors.muted.withOpacity(0.5)),
+        child: Icon(
+          icon,
+          size: 40,
+          color: TPSColors.muted.withValues(alpha: 0.5),
+        ),
       );
     }
 
@@ -140,7 +144,9 @@ class _TPSWaveformIcon extends StatelessWidget {
       width: 120,
       height: 60,
       child: CustomPaint(
-        painter: _WaveformPainter(color: TPSColors.muted.withOpacity(0.3)),
+        painter: _WaveformPainter(
+          color: TPSColors.muted.withValues(alpha: 0.3),
+        ),
       ),
     );
   }

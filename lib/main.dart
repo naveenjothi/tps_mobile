@@ -79,7 +79,7 @@ class _SplashScreen extends StatelessWidget {
                 borderRadius: TPSDecorations.heroBorderRadius,
                 boxShadow: [
                   BoxShadow(
-                    color: TPSColors.cyan.withOpacity(0.2),
+                    color: TPSColors.cyan.withValues(alpha: 0.2),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                     spreadRadius: 2,

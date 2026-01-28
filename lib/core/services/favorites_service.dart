@@ -1,5 +1,6 @@
 import 'api_client.dart';
 import '../models/models.dart';
+import '../utils/logger.dart';
 
 /// Favorites Service
 ///
@@ -15,7 +16,13 @@ class FavoritesService {
       final response = await _client.get('/favorites');
       final data = response['data'] as List<dynamic>? ?? [];
       return data.map((s) => Song.fromJson(s)).toList();
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TPSLogger.error(
+        'Failed to fetch favorites',
+        error: e,
+        stackTrace: stackTrace,
+        tag: 'FavoritesService',
+      );
       return [];
     }
   }

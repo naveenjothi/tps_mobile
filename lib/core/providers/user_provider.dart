@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
-import 'package:tps_core/core/providers/api_provider.dart';
-import 'package:tps_core/core/providers/auth_provider.dart';
-import 'package:tps_core/core/models/models.dart';
+import '../providers/api_provider.dart';
+import '../providers/auth_provider.dart';
+import '../models/models.dart';
 import '../services/services.dart';
 
 /// Provider for the Dashboard Service.
@@ -11,7 +10,17 @@ final userServiceProvider = Provider<UserService>((ref) {
   return UserService(client: client);
 });
 
-final isBackendReadyProvider = StateProvider<bool>((ref) => true);
+/// Provider to track if backend is ready.
+final isBackendReadyProvider = NotifierProvider<_IsBackendReady, bool>(
+  _IsBackendReady.new,
+);
+
+class _IsBackendReady extends Notifier<bool> {
+  @override
+  bool build() => true;
+
+  void setReady(bool value) => state = value;
+}
 
 /// Provider to check if the user is fully ready (Firebase Auth + Backend verified).
 final isAppReadyProvider = Provider<bool>((ref) {
