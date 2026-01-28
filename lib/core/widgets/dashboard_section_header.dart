@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/theme.dart';
+import 'pairing_dialog.dart';
 import 'tps_button.dart';
 import 'tps_card.dart';
 
@@ -20,6 +21,7 @@ class DashboardSectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +43,16 @@ class DashboardSectionHeader extends StatelessWidget {
 
 /// Empty state for "Recently Added" section.
 class EmptyRecentlyAdded extends StatelessWidget {
-  const EmptyRecentlyAdded({super.key});
+  final String? pairingCode;
+  final dynamic ref;
+  final BuildContext? dialogContext;
+
+  const EmptyRecentlyAdded({
+    super.key,
+    this.pairingCode,
+    this.ref,
+    this.dialogContext,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +88,14 @@ class EmptyRecentlyAdded extends StatelessWidget {
             TPSButton.primary(
               label: 'Pair Device',
               icon: Icons.phonelink_rounded,
-              // TODO: Implement device pairing flow
-              onPressed: null,
+              onPressed:
+                  pairingCode != null && ref != null && dialogContext != null
+                  ? () => showPairingDialog(
+                      context: dialogContext!,
+                      pairingCode: pairingCode,
+                      ref: ref,
+                    )
+                  : null,
             ),
           ],
         ),

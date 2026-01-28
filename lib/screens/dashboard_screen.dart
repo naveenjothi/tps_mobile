@@ -16,8 +16,8 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(dashboardStatsProvider);
     final favoritesAsync = ref.watch(favoritesProvider);
-    final authService = ref.watch(authServiceProvider);
     final user = ref.watch(currentUserProvider);
+    final deviceStateAsync = ref.watch(deviceControllerProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -39,6 +39,43 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                 ],
               ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: deviceStateAsync.when(
+                    data: (state) => state.isConnected
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.monitor,
+                                color: TPSColors.success,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Connected Web',
+                                style: TPSTypography.textTheme.labelMedium
+                                    ?.copyWith(color: TPSColors.cyan),
+                              ),
+                            ],
+                          )
+                        : TPSButton.primary(
+                            icon: Icons.phonelink_rounded,
+                            label: 'Pair',
+                            isCompact: true,
+                            onPressed: () => showPairingDialog(
+                              context: context,
+                              pairingCode: state.pairingCode,
+                              ref: ref,
+                            ),
+                          ),
+
+                    loading: () => const SizedBox.shrink(),
+                    error: (_, __) => const SizedBox.shrink(),
+                  ),
+                ),
+              ],
             ),
 
             // Content
@@ -132,7 +169,18 @@ class DashboardScreen extends ConsumerWidget {
 
                   statsAsync.when(
                     data: (stats) => stats.recentlyAdded.isEmpty
-                        ? const EmptyRecentlyAdded()
+                        ? deviceStateAsync
+                              .whenData(
+                                (deviceState) => EmptyRecentlyAdded(
+                                  pairingCode: deviceState.pairingCode,
+                                  ref: ref,
+                                  dialogContext: context,
+                                ),
+                              )
+                              .maybeWhen(
+                                data: (widget) => widget,
+                                orElse: () => const EmptyRecentlyAdded(),
+                              )
                         : _buildRecentlyAddedGrid(stats.recentlyAdded, context),
                     loading: () => const TPSSongGridSkeleton(count: 6),
                     error: (_, __) => const EmptyRecentlyAdded(),

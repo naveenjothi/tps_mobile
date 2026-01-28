@@ -10,8 +10,8 @@ export 'tps_skeleton.dart';
 export 'tps_logo.dart';
 export 'tps_waveform_painter.dart';
 
-// Dashboard widgets
 export 'dashboard_section_header.dart';
 export 'dashboard_stats_grid.dart';
 export 'dashboard_top_artists.dart';
+export 'pairing_dialog.dart';
 export 'song_card.dart';
